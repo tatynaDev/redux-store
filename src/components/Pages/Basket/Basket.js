@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 const Basket = () => {
 
-    const {basket} = useSelector(s => s)
+    const {basket} = useSelector(s => s.basket)
     return (
 
         <div className='container'>
@@ -15,7 +15,8 @@ const Basket = () => {
                         <Link to={'/'}>
                             <div
                                 className='py-[30px] flex dark:bg-gray-800 text-gray-100 rounded items-center justify-center w-[30%]'
-                            >ADD PRODUCT +</div>
+                            >ADD PRODUCT +
+                            </div>
                         </Link>
                 }
 

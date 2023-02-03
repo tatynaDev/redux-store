@@ -3,11 +3,12 @@ import BasketRow from "./BasketRow";
 import {useSelector} from "react-redux";
 
 const BasketTable = () => {
-    const {basket} = useSelector(s => s)
+    const {currencies, defaultCurrency} = useSelector(s => s.main)
+    const {basket} = useSelector(state => state.basket)
     const totalPrice = basket.reduce((acc, el) => {
         acc += el.price * el.quantity
         return acc
-    }, 0)
+    }, 0) * currencies[defaultCurrency]
 
     return (
         <>
@@ -27,7 +28,7 @@ const BasketTable = () => {
                     </th>
 
                     <th scope="col" className="px-6 py-3">
-                        Price
+                        Price <span className='text-blue-600 '>({defaultCurrency})</span>
                     </th>
                     <th scope="" className="px-6 py-3 rounded-r-lg">
 
@@ -46,7 +47,7 @@ const BasketTable = () => {
 
                     </td>
                     <td className="px-6 py-3"></td>
-                    <td className="px-6 py-3">{totalPrice}</td>
+                    <td className="px-6 py-3">{Math.round(totalPrice) + " " + defaultCurrency}</td>
                     <td className="px-6 py-3"></td>
                 </tr>
                 </tfoot>
